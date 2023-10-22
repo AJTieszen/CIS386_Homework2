@@ -1,12 +1,14 @@
 import java.util.*
 
 fun main(args: Array<String>) {
-    println("-----even or odd--------")
+    println("-----even or odd---------------")
 //    evenOdd()
-    println("-----palindrome---------")
+    println("-----palindrome----------------")
 //    isPalindrome()
-    println("-----search string------")
-    searchString()
+    println("-----sum of array--------------")
+    sumOfArray()
+    println("-----search string-------------")
+//    searchString()
 }
 
 fun evenOdd() {
@@ -30,6 +32,22 @@ fun isPalindrome() {
 
     val result = if(string1 == string2) "" else " not"
     println("$string1 is$result a palindrome.")
+}
+
+fun sumOfArray() {
+    val s = Scanner(System.`in`)
+    println("Please enter the number of numbers:")
+    val number = s.nextInt()
+
+    val intArray = IntArray(number)
+    println("Please enter array elements:")
+    for (i in intArray.indices) {
+        print("intArray[i]: ")
+        intArray[i] = s.nextInt()
+    }
+
+    val result = intArray.sum()
+    println("The sum of the entered elements is $result.")
 }
 
 fun searchString() {
