@@ -2,13 +2,15 @@ import java.util.*
 
 fun main(args: Array<String>) {
     println("-----even or odd---------------")
-//    evenOdd()
+    evenOdd()
     println("-----palindrome----------------")
-//    isPalindrome()
+    isPalindrome()
     println("-----sum of array--------------")
     sumOfArray()
     println("-----search string-------------")
-//    searchString()
+    searchString()
+    println("-----subtract two matrices-----")
+    subtractMatrices()
 }
 
 fun evenOdd() {
@@ -55,7 +57,7 @@ fun searchString() {
     println("Please enter the number of strings:")
     val number = s.nextInt()
 
-    val stringArray = Array<String>(number){""}
+    val stringArray = Array(number){""}
     println("Please enter array elements:")
     for (i in stringArray.indices) {
         print("stringArray[$i]: ")
@@ -67,4 +69,49 @@ fun searchString() {
 
     val result = if(stringArray.contains(searchTerm)) "contains" else "does not contain"
     println("The entered string array $result '$searchTerm'")
+}
+
+fun subtractMatrices() {
+    val s = Scanner(System.`in`)
+    println("Enter the number of rows and columns in the matrix:")
+    val rows = s.nextInt()
+    val cols = s.nextInt()
+
+    val matrixA = inputMatrix(s, rows, cols, "first")
+    val matrixB = inputMatrix(s, rows, cols, "second")
+    val matrixR = Array(rows){IntArray(cols)}
+
+    println("Matrix A:")
+    printMatrix(matrixA)
+    println("Matrix B:")
+    printMatrix(matrixB)
+
+    for (i in matrixR.indices) {
+        for (j in matrixR.indices) {
+            matrixR[i][j] = matrixA[i][j] - matrixB[i][j]
+        }
+    }
+
+    println("Matrix R:")
+    printMatrix(matrixR)
+}
+
+fun inputMatrix(s: Scanner, rows: Int, cols: Int, identifier: String): Array<IntArray> {
+    val matrix = Array(rows){IntArray(cols)}
+
+    println("Enter the elements in the $identifier matrix ($rows x $cols)")
+    for (i in matrix.indices) {
+        for (j in matrix[i].indices) {
+            print("matrix[$i][$j]:")
+            matrix[i][j] = s.nextInt()
+        }
+    }
+
+    return matrix
+}
+
+fun printMatrix(matrix: Array<IntArray>) {
+    for (i in matrix.indices) {
+        println(matrix[i].contentToString())
+    }
 }
